@@ -1,25 +1,28 @@
-"use client"
+"use client";
 
-import { Canvas, useThree } from "@react-three/fiber"
-import Model from "./Model"
-import { Suspense } from "react"
-import { useProgress, Html, ScrollControls } from "@react-three/drei"
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, useProgress, Html } from "@react-three/drei";
+import Model from "./Model";
+import { Suspense } from "react";
 
 function Loader() {
-  const { progress, active } = useProgress()
-
-  return <Html center>{progress.toFixed(1)} % loaded</Html>
+  const { progress } = useProgress();
+  return <Html center>{progress.toFixed(1)} % loaded</Html>;
 }
 
 export default function Scene() {
   return (
-    <Canvas gl={{ antialias: true }} dpr={[1, 1.5]} className="relative h-svh">
+    <Canvas
+      camera={{ position: [5, 10, 5], zoom: 2, fov: 45 }}
+      dpr={[1, 1.5]}
+      className="relative "
+    >
+      {/* Add orbit controls for mouse interaction */}
+      <OrbitControls enableZoom={false} enablePan={true} />
       <directionalLight position={[-5, -5, 5]} intensity={4} />
       <Suspense fallback={<Loader />}>
-        <ScrollControls damping={0.5} pages={3}>
-          <Model />
-        </ScrollControls>
+        <Model />
       </Suspense>
     </Canvas>
-  )
+  );
 }

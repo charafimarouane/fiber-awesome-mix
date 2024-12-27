@@ -1,32 +1,24 @@
-import { useAnimations, useGLTF, useScroll } from "@react-three/drei"
-import { useFrame } from "@react-three/fiber"
-import { useEffect, useRef } from "react"
-import { Group } from "three"
+import { useAnimations, useGLTF } from "@react-three/drei"
+import { useEffect } from "react"
+import { Group, LoopRepeat } from "three" // Import LoopRepeat from Three.js
 
 useGLTF.preload("/robot_playground.glb")
 
 export default function Model() {
-  const group = useRef<Group>(null)
-  const { nodes, materials, animations, scene } = useGLTF(
-    "/robot_playground.glb"
-  )
-  const { actions, clips } = useAnimations(animations, scene)
-  const scroll = useScroll()
+  const { scene, animations } = useGLTF("/robot_playground.glb")
+  const { actions } = useAnimations(animations, scene)
 
   useEffect(() => {
-    console.log(actions)
-    //@ts-ignore
-    actions["Experiment"].play().paused = true
-  }, [])
-  useFrame(
-    () =>
-      //@ts-ignore
-      (actions["Experiment"].time =
-        //@ts-ignore
-        (actions["Experiment"].getClip().duration * scroll.offset) / 4)
-  )
+    // Play the animation in a loop
+    const action = actions["Experiment"]
+    if (action) {
+      action.play()
+      action.setLoop(LoopRepeat, Infinity) // Correct way to enable looping
+    }
+  }, [actions])
+
   return (
-    <group ref={group}>
+    <group>
       <primitive object={scene} />
     </group>
   )

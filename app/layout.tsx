@@ -5,6 +5,7 @@ import "./globals.css";
 
 // Components
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 
 const poppins = Poppins({ 
@@ -26,10 +27,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={poppins.className}>
+      <body>
         <Header/>
         {children}
-      
+        <Footer/>
       </body>
     </html>
   );

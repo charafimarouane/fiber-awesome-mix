@@ -25,10 +25,6 @@ body{
   background-image: url("/background1.png");
 }
 
-.bg-services{
-  background-image: url("/bubble1.png");
-}
-
 
 .scroll-snap-y {
   scroll-snap-type: y mandatory;
@@ -37,3 +33,13 @@ body{
 .scroll-snap-align-center {
   scroll-snap-align: center;
 }
+
+.bg-team{
+  background-image: url("/team_bg.png");
+}
+
+
+.glass{
+  @apply bg-gradient-to-r from-white/10 to-white/20 backdrop-blur-md rounded-md px-8 py-8 shadow-lg border border-white/20;
+}
+

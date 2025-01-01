@@ -19,14 +19,11 @@ const config: Config = {
   		colors: {
   			primary: "#26ADBA",
   			dark_blue: "#0E46A3",
-  			text_color: "",
+  			text_color: "#101010",
 			jungle_green:"#47B091",
   			bg_primary: "#1A1A1A",
 			pink_bold: "#f420e1"
   		},
-		  fontFamily: {
-			modak: ['Modak', 'serif'], // Replace 'YourFontName' with the one defined in @font-face
-		  },
   	}
   },
   plugins: [require("tailwindcss-animate")],

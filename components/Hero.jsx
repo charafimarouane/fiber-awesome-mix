@@ -1,102 +1,66 @@
 "use client";
 
+import CountUp from "react-countup";
 import dynamic from "next/dynamic";
-import { Modak } from "@next/font/google";
+import { Kanit, Poppins } from "@next/font/google";
 import { Button } from "./ui/button";
 import { motion } from "framer-motion";
 
 const Scene = dynamic(() => import("./Scene"), { ssr: false });
 
-const modak = Modak({
+const kanit = Kanit({
   subsets: ["latin"], // Adjust based on the font
-  weight: "400", // Choose specific weights, e.g., 400 for normal
+  weight: "700", // Choose specific weights, e.g., 400 for normal
 });
 
 const Hero = () => {
   return (
-    <div className=" bg-hero bg-cover">
-      <div className="container mx-auto">
+    <motion.div 
+        initial={{ opacity: 0,  }}
+        animate={{ opacity: 1,  }}
+        transition={{ duration: 0.5, delay: 0.5 }}
+      className="bg-text_color h-[70vh] rounded-2xl flex items-center justify-center px-12">
+      <div className="">
+        <div className="grid grid-cols-2 gap-6 text-white ">
         <motion.div
-          initial={{ opacity: 0, transform: "translateY(-100px)" }}
-          animate={{
-            opacity: 1,
-            transform: "translateY(0px)",
-            transition: { duration: 0.4, ease: "easeIn" },
-          }}
-          className="text-center mt-[72px]"
-        >
-          <h1 className={`${modak.className} text-9xl text-primary`}>SAFIENIA</h1>
-          <h2 className={`${modak.className} text-8xl text-white`}>Agency</h2>
-        </motion.div>
-
-        {/* Grid layout */}
-        <div className="grid grid-cols-5 gap-6 text-white mt-16">
-          {/* Left Column */}
-          <div className="col-span-1 space-y-12">
-            <motion.div
-              initial={{ opacity: 0, transform: "translateX(-100px)" }}
-              animate={{
-                opacity: 1,
-                transform: "translateX(0px)",
-                transition: { duration: 0.4, ease: "easeIn" },
-              }}
-              className="bg-gradient-to-l from-white/10 to-white/20 backdrop-blur-md rounded-md px-8 py-8 w-[250px] ml-12 shadow-lg border border-white/20"
-            >
-              <h1 className="text-5xl font-semibold">12 </h1>
-              <p className="text-white/60">Years Experience</p>
-            </motion.div>
-
-            <motion.div
-                initial={{ opacity: 0, transform: "translateX(-100px)" }}
-                animate={{
-                    opacity: 1,
-                    transform: "translateX(0px)",
-                    transition: { duration: 0.4, ease: "easeIn" },
-                }}
-                className="bg-gradient-to-r from-white/10 to-white/20 backdrop-blur-md rounded-md px-8 py-8 w-[250px] ml-12 shadow-lg border border-white/20"
-                >
-                <h1 className="text-5xl font-semibold">12 </h1>
-                <p className="text-white/60">Years Experience</p>
-            </motion.div>
-          </div>
-
-          {/* Middle Column - Scene */}
-          <div className="col-span-3 flex justify-center items-center">
-            <motion.div
+            className=""
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+          >
+            <h1 className={`${kanit.className}}  text-8xl text-primary font-bold`}>
+              Steering your path to <span className="text-white">success<br /> in digital world</span>
+            </h1>
+            <motion.p
+              className="text-xl text-white/60 mt-8"
               initial={{ opacity: 0 }}
-              animate={{
-                opacity: 1,
-                transition: { duration: 0.4, ease: "easeIn" },
-              }}
-              className="w-full h-[500px]"
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
             >
-              <Scene />
-            </motion.div>
-          </div>
-
-          {/* Right Column */}
-          <div className="col-span-1 flex justify-end mt-12">
+              We are a digital agency that specializes in creating digital products, services and experiences. We help businesses to grow and succeed in the digital world.
+            </motion.p>
             <motion.div
-              initial={{ opacity: 0, transform: "translateX(100px)" }}
-              animate={{
-                opacity: 1,
-                transform: "translateX(0px)",
-                transition: { duration: 0.4, ease: "easeIn" },
-              }}
-              className="w-2/3"
+              className="flex gap-4 mt-6"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
             >
-              <p className="text-white/80">
-                est simplement du faux texte employé dans la composition et la
-                mise en page avant impression. Le Lorem Ipsum est 
-              </p>
-              <Button className="text-lg mt-8 rounded-full w-full bg-primary py-6 px-12 font-medium">
+              <Button className="text-lg font-semibold mt-8 rounded-lg w-1/2  text-white border-2 border-primary bg-primary  py-6 px-12">
+                Work with us
+              </Button>
+              <Button className="text-lg font-semibold mt-8 rounded-lg w-1/2 bg-text_color text-primary hover:text-white border-primary border-2 py-6 px-12 ">
                 Work with us
               </Button>
             </motion.div>
-          </div>
+           
+          </motion.div>
+          
+         <div className="">
+                svh
+         </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
